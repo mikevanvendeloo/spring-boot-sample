@@ -1,6 +1,6 @@
 #!/usr/bin/groovy
 
-properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '7', artifactNumToKeepStr: '10', daysToKeepStr: '', numToKeepStr: '')), pipelineTriggers([])
+properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '7', artifactNumToKeepStr: '10', daysToKeepStr: '', numToKeepStr: '')), pipelineTriggers([])])
 
 def currentBranch = ""
 def currentVersion = ""
