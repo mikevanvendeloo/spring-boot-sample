@@ -1,19 +1,27 @@
 #!/usr/bin/groovy
-
-properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '7', artifactNumToKeepStr: '10', daysToKeepStr: '', numToKeepStr: '')), pipelineTriggers([])])
-
-def currentBranch = ""
-def currentVersion = ""
-
-node {
-
-    timeout(20) {
+pipeline {
+    agent any
+    tools {
+        maven 'M3'
+    }
+    stages {
       stage('Checkout') {
         checkout scm
       }
       
       stage('Build') {
-        sh 'mvn clean deploy'
+           steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                    mvn clean deploy
+                '''
+            }
+            post {
+                success {
+                    junit 'target/surefire-reports/**/*.xml' 
+                }
+            }
       }
       
       stage('Deploy') {
