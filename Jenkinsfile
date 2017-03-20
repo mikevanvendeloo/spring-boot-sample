@@ -6,7 +6,9 @@ pipeline {
     }
     stages {
       stage('Checkout') {
-        checkout scm
+          steps {
+            checkout scm
+          }
       }
       
       stage('Build') {
@@ -25,7 +27,9 @@ pipeline {
       }
       
       stage('Deploy') {
-        print("TODO")
+          steps {
+            print("TODO")
+          }
       }
     }
 }
