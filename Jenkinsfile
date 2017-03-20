@@ -16,7 +16,7 @@ pipeline {
                 sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
-                    mvn clean deploy
+                    mvn clean package
                 '''
             }
             post {
