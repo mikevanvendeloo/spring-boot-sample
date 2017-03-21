@@ -233,6 +233,7 @@
                 <dependency>
                     <groupId>org.codehaus.sonar-plugins.java</groupId>
                     <artifactId>sonar-jacoco-listeners</artifactId>
+                    <version>${sonar.jacoco.listeners.plugin.version}</version>
                 </dependency>
             </dependencies>
         </profile>

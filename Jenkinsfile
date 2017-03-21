@@ -10,6 +10,9 @@ pipeline {
       stage('Checkout') {
           steps {
             checkout scm
+            echo gitCommitId()
+            echo currentVersionString()
+            echo extractPomVersion()
           }
       }
       
