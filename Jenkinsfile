@@ -25,7 +25,15 @@ pipeline {
                 }
             }
       }
-      
+      stage('QA') {
+          steps {
+                sh '''
+                    echo "PATH = ${PATH}"
+                    echo "M2_HOME = ${M2_HOME}"
+                    mvn sonar:sonar
+                '''
+        }
+      }
       stage('Deploy') {
           steps {
             print("TODO")
