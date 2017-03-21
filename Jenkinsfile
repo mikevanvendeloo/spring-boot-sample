@@ -28,7 +28,7 @@ pipeline {
       stage('QA') {
 
           steps {
-            withSonarQubeEnv {
+            withSonarQubeEnv('LocalSonar') {
                 sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
