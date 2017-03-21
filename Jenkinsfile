@@ -12,7 +12,7 @@ pipeline {
         maven 'M3'
     }
 
-    def currentBranch
+
     stages {
       stage('Checkout') {
           steps {
@@ -20,7 +20,10 @@ pipeline {
             echo gitCommitId()
             echo currentVersionString()
             echo extractPomVersion()
-            currentBranch = gitBranch()
+            script {
+                def currentBranch = gitBranch()
+                print("BRANCH: ${currentBranch}")
+            }
           }
       }
       
@@ -70,11 +73,11 @@ pipeline {
       }
       stage('Deploy') {
           steps {
-            print("Build resultaat ${currentBuild.result}")
+            print("Deploy moet nog gebeuren....")
           }
           post {
             success {
-                currentBuild.displayName="Succes ${currentVersion} #${env.BUILD_NUMBER}"
+                print("Succesvolle build ${currentBuild.result}")
             }
           }
       }
