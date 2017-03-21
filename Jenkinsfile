@@ -7,7 +7,6 @@ pipeline {
         // Keep the 10 most recent builds
         buildDiscarder(logRotator(numToKeepStr:'10'))
     }
-    triggers { pollSCM('H 4/* 0 0 1-5') }
     tools {
         maven 'M3'
     }
