@@ -218,5 +218,23 @@
         </plugins>
     </build>
 
-
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <properties>
+                <sonar.language>java</sonar.language>
+                <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+                <sonar.jacoco.reportPath>${jacoco.ut.report.path}</sonar.jacoco.reportPath>
+                <sonar.jacoco.itReportPath>${jacoco.it.report.path}</sonar.jacoco.itReportPath>
+                <sonar.java.source>${java.version}</sonar.java.source>
+                <sonar.scm.disabled>true</sonar.scm.disabled>
+            </properties>
+            <dependencies>
+                <dependency>
+                    <groupId>org.codehaus.sonar-plugins.java</groupId>
+                    <artifactId>sonar-jacoco-listeners</artifactId>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 </project>

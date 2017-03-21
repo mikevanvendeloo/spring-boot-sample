@@ -1,4 +1,6 @@
-#!/usr/bin/groovy
+#!groovy
+@Library('jenkins2-pipeline-library') _
+
 pipeline {
     agent any
     tools {
@@ -21,7 +23,9 @@ pipeline {
             }
             post {
                 success {
-                    junit 'target/surefire-reports/**/*.xml' 
+                    junit 'target/surefire-reports/**/*.xml'
+                    step([$class: 'JacocoPublisher'])
+                    archiveArtifacts '**/*.war'
                 }
             }
       }
@@ -32,7 +36,7 @@ pipeline {
                 sh '''
                     echo "PATH = ${PATH}"
                     echo "M2_HOME = ${M2_HOME}"
-                    mvn sonar:sonar
+                    mvn sonar:sonar -Psonar
                 '''
             }
         }
